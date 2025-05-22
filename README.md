@@ -35,7 +35,7 @@ SELECT COUNT(1) AS 'Количество' FROM film f WHERE f.`length` > (SELECT
 ### Решение 3
 
 ````SQL
-SELECT MONTH(p.payment_date) AS month , SUM(p.amount ) AS sum, COUNT(r.rental_id) AS 'Количеество аренд' FROM payment p 
+SELECT DATE_FORMAT(p.payment_date, "%Y-%m") AS month , SUM(p.amount ) AS sum, COUNT(r.rental_id) AS 'Количеество аренд' FROM payment p 
 JOIN rental r  ON r.rental_id = p.rental_id
 GROUP BY month ORDER BY sum DESC LIMIT 1;
 ````
